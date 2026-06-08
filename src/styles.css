@@ -4,6 +4,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: var(--ink);
+  --color-cream: var(--cream);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-subtle: var(--subtle);
+}
+
 /*
  * Design system definition.
  *
@@ -62,26 +71,34 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --radius: 0.875rem;
+
+  /* 4Vision brand palette */
+  --cream: oklch(0.965 0.005 85);      /* #F5F3EF off-white */
+  --ink: oklch(0.18 0 0);              /* #111111 black */
+  --panel: oklch(0.93 0 0);            /* #EAEAEA light grey */
+  --line: oklch(0.9 0 0);
+  --subtle: oklch(0.55 0 0);           /* #666666 dark grey */
+
+  --background: var(--cream);
+  --foreground: var(--ink);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
+  --card-foreground: var(--ink);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--cream);
+  --secondary: var(--panel);
+  --secondary-foreground: var(--ink);
+  --muted: var(--panel);
+  --muted-foreground: var(--subtle);
+  --accent: var(--panel);
+  --accent-foreground: var(--ink);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--ink);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +157,24 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@utility reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
