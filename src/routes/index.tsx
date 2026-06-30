@@ -293,11 +293,11 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#top" aria-label="4Vision home">
-            <Wordmark className="text-2xl" />
+            <Logo className="h-8" />
           </a>
           <div className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
             <a href="#diensten" className="transition-colors hover:text-foreground">Diensten</a>
-            <a href="#werk" className="transition-colors hover:text-foreground">Werk</a>
+            <a href="#werk-videos" className="transition-colors hover:text-foreground">Werk</a>
             <a href="#werkwijze" className="transition-colors hover:text-foreground">Werkwijze</a>
             <a href="#over" className="transition-colors hover:text-foreground">Over ons</a>
           </div>
