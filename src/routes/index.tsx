@@ -16,7 +16,6 @@ import {
   Instagram,
   ArrowRight,
   Check,
-  Volume2,
   X,
 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
