@@ -437,23 +437,42 @@ function Index() {
         </div>
       </section>
 
-      {/* WERKWIJZE */}
+      {/* WERKWIJZE — TIMELINE */}
       <section id="werkwijze" className="px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="reveal mb-14 max-w-2xl">
+        <div className="mx-auto max-w-3xl">
+          <div className="reveal mb-16 max-w-2xl">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
               Werkwijze
             </p>
             <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">Zo werken wij</h2>
           </div>
-          <div className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s) => (
-              <div key={s.n} className="reveal bg-card p-8">
-                <span className="text-5xl font-extrabold text-muted-foreground/30">{s.n}</span>
-                <h3 className="mt-6 text-xl font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-              </div>
-            ))}
+          <div className="relative">
+            {/* vertical line */}
+            <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border md:left-1/2 md:-translate-x-1/2" />
+            <div className="space-y-12 md:space-y-0">
+              {steps.map((s, i) => (
+                <div
+                  key={s.n}
+                  className={`reveal relative flex items-start gap-6 md:gap-0 ${
+                    i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  } md:min-h-[10rem]`}
+                >
+                  {/* dot */}
+                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground md:absolute md:left-1/2 md:-translate-x-1/2">
+                    {s.n}
+                  </div>
+                  {/* content */}
+                  <div
+                    className={`flex-1 rounded-3xl border border-border bg-card p-7 md:max-w-[calc(50%-2.5rem)] ${
+                      i % 2 === 0 ? "md:mr-auto md:text-right" : "md:ml-auto"
+                    }`}
+                  >
+                    <h3 className="text-xl font-bold">{s.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
