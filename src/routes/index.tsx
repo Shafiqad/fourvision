@@ -413,44 +413,6 @@ function Index() {
         </div>
       </section>
 
-      {/* PORTFOLIO */}
-      <section id="werk" className="px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="reveal mb-14 max-w-2xl">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-              Ons werk
-            </p>
-            <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
-              Content die blijft hangen
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {portfolio.map((p) => (
-              <div
-                key={p.title}
-                className="reveal group relative aspect-[3/4] overflow-hidden rounded-3xl bg-secondary"
-              >
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  width={768}
-                  height={1024}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                    {p.tag}
-                  </span>
-                  <h3 className="mt-1 text-lg font-bold">{p.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* VOOR WIE */}
       <section className="px-6 py-20 md:py-28">
         <div className="mx-auto max-w-7xl">
