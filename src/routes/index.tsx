@@ -20,14 +20,12 @@ import {
 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import founderImg from "@/assets/founder.jpeg.asset.json";
+import logoBlack from "@/assets/logo-black.png.asset.json";
+import logoWhite from "@/assets/logo-white.png.asset.json";
 import metaAdsVideo from "@/assets/meta-ads.mp4.asset.json";
 import eventsVideo from "@/assets/events.mp4.asset.json";
 import sketchesVideo from "@/assets/sketches.mp4.asset.json";
 import marketingVideo from "@/assets/marketing.mp4.asset.json";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -49,11 +47,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function Wordmark({ className = "" }: { className?: string }) {
+function Logo({ variant = "dark", className = "" }: { variant?: "dark" | "light"; className?: string }) {
   return (
-    <span className={`font-extrabold tracking-tight leading-none ${className}`}>
-      4<span className="font-bold">Vision</span>
-    </span>
+    <img
+      src={variant === "light" ? logoWhite.url : logoBlack.url}
+      alt="4Vision logo"
+      className={`w-auto ${className}`}
+    />
   );
 }
 
@@ -131,12 +131,6 @@ const steps = [
   { n: "02", title: "Productie", text: "Professionele opnames op locatie." },
   { n: "03", title: "Montage", text: "Cinematische montage die aansluit bij jouw merk." },
   { n: "04", title: "Groei", text: "Content publiceren of inzetten voor Meta Ads." },
-];
-
-const portfolio = [
-  { img: portfolio1, tag: "Horeca", title: "Restaurant brandfilm" },
-  { img: portfolio2, tag: "Sport", title: "Athlete personal branding" },
-  { img: portfolio3, tag: "Corporate", title: "Bedrijfsverhaal" },
 ];
 
 const videoServices = [
@@ -299,11 +293,11 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#top" aria-label="4Vision home">
-            <Wordmark className="text-2xl" />
+            <Logo className="h-8" />
           </a>
           <div className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
             <a href="#diensten" className="transition-colors hover:text-foreground">Diensten</a>
-            <a href="#werk" className="transition-colors hover:text-foreground">Werk</a>
+            <a href="#werk-videos" className="transition-colors hover:text-foreground">Werk</a>
             <a href="#werkwijze" className="transition-colors hover:text-foreground">Werkwijze</a>
             <a href="#over" className="transition-colors hover:text-foreground">Over ons</a>
           </div>
@@ -330,7 +324,7 @@ function Index() {
               <PrimaryButton href="#contact">
                 Plan een gratis kennismaking <ArrowRight className="h-4 w-4" />
               </PrimaryButton>
-              <SecondaryButton href="#werk">Bekijk ons werk</SecondaryButton>
+              <SecondaryButton href="#werk-videos">Bekijk ons werk</SecondaryButton>
             </div>
           </div>
           <div className="reveal">
@@ -419,44 +413,6 @@ function Index() {
         </div>
       </section>
 
-      {/* PORTFOLIO */}
-      <section id="werk" className="px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="reveal mb-14 max-w-2xl">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-              Ons werk
-            </p>
-            <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
-              Content die blijft hangen
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {portfolio.map((p) => (
-              <div
-                key={p.title}
-                className="reveal group relative aspect-[3/4] overflow-hidden rounded-3xl bg-secondary"
-              >
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  width={768}
-                  height={1024}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-                    {p.tag}
-                  </span>
-                  <h3 className="mt-1 text-lg font-bold">{p.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* VOOR WIE */}
       <section className="px-6 py-20 md:py-28">
         <div className="mx-auto max-w-7xl">
@@ -481,23 +437,42 @@ function Index() {
         </div>
       </section>
 
-      {/* WERKWIJZE */}
+      {/* WERKWIJZE — TIMELINE */}
       <section id="werkwijze" className="px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="reveal mb-14 max-w-2xl">
+        <div className="mx-auto max-w-3xl">
+          <div className="reveal mb-16 max-w-2xl">
             <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
               Werkwijze
             </p>
             <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">Zo werken wij</h2>
           </div>
-          <div className="grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((s) => (
-              <div key={s.n} className="reveal bg-card p-8">
-                <span className="text-5xl font-extrabold text-muted-foreground/30">{s.n}</span>
-                <h3 className="mt-6 text-xl font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-              </div>
-            ))}
+          <div className="relative">
+            {/* vertical line */}
+            <div className="absolute left-[19px] top-2 bottom-2 w-px bg-border md:left-1/2 md:-translate-x-1/2" />
+            <div className="space-y-12 md:space-y-0">
+              {steps.map((s, i) => (
+                <div
+                  key={s.n}
+                  className={`reveal relative flex items-start gap-6 md:gap-0 ${
+                    i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                  } md:min-h-[10rem]`}
+                >
+                  {/* dot */}
+                  <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground md:absolute md:left-1/2 md:-translate-x-1/2">
+                    {s.n}
+                  </div>
+                  {/* content */}
+                  <div
+                    className={`flex-1 rounded-3xl border border-border bg-card p-7 md:max-w-[calc(50%-2.5rem)] ${
+                      i % 2 === 0 ? "md:mr-auto md:text-right" : "md:ml-auto"
+                    }`}
+                  >
+                    <h3 className="text-xl font-bold">{s.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -634,28 +609,81 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-primary px-6 py-16 text-primary-foreground">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 text-center">
-          <Wordmark className="text-3xl" />
-          <p className="text-lg font-medium">
-            Meer zichtbaarheid. Meer klanten. Meer groei.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary-foreground/70">
-            <a href="tel:0685002058" className="transition-colors hover:text-primary-foreground">
-              0685002058
-            </a>
-            <a
-              href="https://instagram.com/fourvision.nl"
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-primary-foreground"
-            >
-              @fourvision.nl
-            </a>
+      <footer className="bg-primary px-6 pt-20 pb-10 text-primary-foreground">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 md:grid-cols-12">
+            {/* Brand */}
+            <div className="md:col-span-5">
+              <Logo variant="light" className="h-10" />
+              <p className="mt-6 max-w-sm text-lg font-medium leading-relaxed">
+                Meer zichtbaarheid. Meer klanten. Meer groei.
+              </p>
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/60">
+                Videomarketing agency die bedrijven helpt groeien met
+                short-form content, professionele videoproductie en Meta Ads.
+              </p>
+            </div>
+
+            {/* Navigatie */}
+            <div className="md:col-span-3">
+              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
+                Navigatie
+              </h4>
+              <ul className="mt-5 space-y-3 text-sm text-primary-foreground/70">
+                {[
+                  { label: "Diensten", href: "#diensten" },
+                  { label: "Werk", href: "#werk-videos" },
+                  { label: "Werkwijze", href: "#werkwijze" },
+                  { label: "Over ons", href: "#over" },
+                  { label: "Contact", href: "#contact" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <a href={l.href} className="transition-colors hover:text-primary-foreground">
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="md:col-span-4">
+              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
+                Contact
+              </h4>
+              <ul className="mt-5 space-y-4 text-sm text-primary-foreground/70">
+                <li>
+                  <a
+                    href="tel:0685002058"
+                    className="flex items-center gap-3 transition-colors hover:text-primary-foreground"
+                  >
+                    <Phone className="h-4 w-4" /> 06 85 00 20 58
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://instagram.com/fourvision.nl"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-3 transition-colors hover:text-primary-foreground"
+                  >
+                    <Instagram className="h-4 w-4" /> @fourvision.nl
+                  </a>
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-primary-foreground px-6 py-3 text-sm font-semibold text-primary transition-all duration-300 hover:gap-3"
+              >
+                Plan een gesprek <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
-          <p className="text-xs text-primary-foreground/40">
-            © {new Date().getFullYear()} 4Vision — Jouw verhaal. Onze visie.
-          </p>
+
+          <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/15 pt-8 text-xs text-primary-foreground/40 sm:flex-row">
+            <p>© {new Date().getFullYear()} 4Vision — Jouw verhaal. Onze visie.</p>
+            <p>Alle rechten voorbehouden.</p>
+          </div>
         </div>
       </footer>
     </div>
