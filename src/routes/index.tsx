@@ -336,14 +336,31 @@ function Index() {
           </div>
           <div className="reveal">
             <div className="overflow-hidden rounded-3xl bg-secondary">
-              <img
-                src={heroCamera}
-                alt="Professionele cinema camera van 4Vision"
-                width={1024}
-                height={1280}
-                className="h-full w-full object-cover"
-              />
+              <FounderImage />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ONZE DIENSTEN — VIDEO GRID */}
+      <section id="werk-videos" className="px-6 py-20 md:py-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="reveal mb-14 max-w-2xl">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              Onze diensten
+            </p>
+            <h2 className="text-4xl font-extrabold tracking-tight md:text-5xl">
+              Onze Diensten
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              Bekijk een selectie van ons werk. Iedere video laat zien hoe wij
+              bedrijven en ondernemers helpen groeien met krachtige content.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {videoServices.map((s) => (
+              <VideoCard key={s.title} s={s} />
+            ))}
           </div>
         </div>
       </section>
