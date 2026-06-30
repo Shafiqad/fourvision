@@ -140,6 +140,144 @@ const portfolio = [
   { img: portfolio3, tag: "Corporate", title: "Bedrijfsverhaal" },
 ];
 
+const videoServices = [
+  {
+    video: metaAdsVideo.url,
+    tag: "Meta Ads",
+    title: "Meta Ads",
+    text: "Bereik precies de juiste doelgroep met professionele videoadvertenties voor Facebook en Instagram. Wij combineren sterke content met slimme advertenties om meer leads, klanten en omzet te genereren.",
+  },
+  {
+    video: eventsVideo.url,
+    tag: "Events & Personal Branding",
+    title: "Events & Personal Branding",
+    text: "Van aftermovies en bedrijfsevenementen tot content voor ondernemers en sporters. Professionele video's die jouw verhaal krachtig vastleggen.",
+  },
+  {
+    video: sketchesVideo.url,
+    tag: "Sketches & Social Content",
+    title: "Sketches & Social Content",
+    text: "Creatieve en entertainende video's die opvallen, gedeeld worden en zorgen voor meer bereik, betrokkenheid en zichtbaarheid op social media.",
+  },
+  {
+    video: marketingVideo.url,
+    tag: "Marketing & Promotievideo's",
+    title: "Marketing & Promotievideo's",
+    text: "Professionele promotiefilms en bedrijfsvideo's waarmee je jouw merk, product of dienst overtuigend presenteert en meer klanten aantrekt.",
+  },
+];
+
+const founderStory = [
+  "Twee jaar geleden begon ik met het maken van video's, niet met het idee om een bedrijf te starten, maar simpelweg omdat ik het leuk vond. In mijn vrije tijd was ik voortdurend bezig met filmen, monteren en experimenteren met nieuwe ideeën. Urenlang zat ik achter mijn laptop om mezelf alles aan te leren. Er was niemand die mij uitlegde hoe het moest; ik leerde alles door te proberen, fouten te maken en steeds beter te worden.",
+  "Na verloop van tijd begon mijn content steeds beter te presteren. Mijn video's bereikten miljoenen views, verzamelden duizenden likes en ik bouwde een community van meer dan 10.000 volgers op. Hierdoor ontdekte ik niet alleen hoe je goede video's maakt, maar vooral hoe je content creëert die mensen blijft boeien en resultaten oplevert.",
+  "Steeds vaker kreeg ik dezelfde vraag van ondernemers en bedrijven: \u201CKun jij dit ook voor ons doen?\u201D Dat was het moment waarop ik besefte dat mijn hobby kon uitgroeien tot iets veel groters. Zo ontstond 4Vision.",
+  "Vandaag help ik bedrijven met het maken van krachtige short-form content, professionele bedrijfsvideo's, promotievideo's en Meta Ads die niet alleen mooi ogen, maar ook bijdragen aan meer zichtbaarheid, meer vertrouwen en uiteindelijk meer klanten.",
+  "Mijn missie is eenvoudig: jouw verhaal vertellen op een manier die mensen onthouden \u00E9n die resultaat oplevert.",
+];
+
+function VideoCard({ s }: { s: (typeof videoServices)[number] }) {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  function play() {
+    const v = ref.current;
+    if (v) {
+      v.currentTime = 0;
+      void v.play();
+    }
+  }
+  function stop() {
+    const v = ref.current;
+    if (v) {
+      v.pause();
+      v.currentTime = 0;
+    }
+  }
+
+  return (
+    <div className="reveal group">
+      <div
+        onMouseEnter={play}
+        onMouseLeave={stop}
+        className="relative aspect-[9/16] overflow-hidden rounded-3xl bg-secondary transition-all duration-500 group-hover:shadow-[0_30px_70px_-30px_rgba(0,0,0,0.45)]"
+      >
+        <video
+          ref={ref}
+          src={s.video}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+      </div>
+      <div className="mt-5 px-1">
+        <h3 className="text-lg font-bold">{s.title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+      </div>
+    </div>
+  );
+}
+
+function FounderImage() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div
+      className="group relative overflow-hidden rounded-3xl bg-secondary"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onClick={() => setOpen((v) => !v)}
+    >
+      <img
+        src={founderImg.url}
+        alt="Oprichter van 4Vision"
+        width={1024}
+        height={1280}
+        className={`h-full w-full object-cover transition-transform duration-700 ${open ? "scale-105" : "scale-100"}`}
+      />
+
+      <div
+        className={`absolute inset-0 flex flex-col bg-black/80 p-7 transition-all duration-500 md:p-9 ${
+          open ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
+        }`}
+      >
+        <button
+          type="button"
+          aria-label="Sluiten"
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpen(false);
+          }}
+          className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 md:hidden"
+        >
+          <X className="h-5 w-5" />
+        </button>
+        <h3 className="text-2xl font-extrabold text-white">Van hobby naar 4Vision.</h3>
+        <div className="mt-4 space-y-3 overflow-y-auto pr-1 text-sm leading-relaxed text-white/80">
+          {founderStory.map((p, i) => (
+            <p
+              key={i}
+              className={`transition-all duration-500 ${open ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}
+              style={{ transitionDelay: open ? `${120 + i * 90}ms` : "0ms" }}
+            >
+              {p}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      <div
+        className={`pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-white/80 transition-opacity duration-300 ${
+          open ? "opacity-0" : "opacity-100"
+        }`}
+      >
+        Hover of tik om mijn verhaal te ontdekken
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   useReveal();
   const [submitting, setSubmitting] = useState(false);
