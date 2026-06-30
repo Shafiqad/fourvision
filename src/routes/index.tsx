@@ -20,14 +20,12 @@ import {
 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
 import founderImg from "@/assets/founder.jpeg.asset.json";
+import logoBlack from "@/assets/logo-black.png.asset.json";
+import logoWhite from "@/assets/logo-white.png.asset.json";
 import metaAdsVideo from "@/assets/meta-ads.mp4.asset.json";
 import eventsVideo from "@/assets/events.mp4.asset.json";
 import sketchesVideo from "@/assets/sketches.mp4.asset.json";
 import marketingVideo from "@/assets/marketing.mp4.asset.json";
-import portfolio1 from "@/assets/portfolio-1.jpg";
-import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -49,11 +47,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-function Wordmark({ className = "" }: { className?: string }) {
+function Logo({ variant = "dark", className = "" }: { variant?: "dark" | "light"; className?: string }) {
   return (
-    <span className={`font-extrabold tracking-tight leading-none ${className}`}>
-      4<span className="font-bold">Vision</span>
-    </span>
+    <img
+      src={variant === "light" ? logoWhite.url : logoBlack.url}
+      alt="4Vision logo"
+      className={`w-auto ${className}`}
+    />
   );
 }
 
