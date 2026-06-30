@@ -609,28 +609,81 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-primary px-6 py-16 text-primary-foreground">
-        <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 text-center">
-          <Wordmark className="text-3xl" />
-          <p className="text-lg font-medium">
-            Meer zichtbaarheid. Meer klanten. Meer groei.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-primary-foreground/70">
-            <a href="tel:0685002058" className="transition-colors hover:text-primary-foreground">
-              0685002058
-            </a>
-            <a
-              href="https://instagram.com/fourvision.nl"
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-primary-foreground"
-            >
-              @fourvision.nl
-            </a>
+      <footer className="bg-primary px-6 pt-20 pb-10 text-primary-foreground">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-12 md:grid-cols-12">
+            {/* Brand */}
+            <div className="md:col-span-5">
+              <Logo variant="light" className="h-10" />
+              <p className="mt-6 max-w-sm text-lg font-medium leading-relaxed">
+                Meer zichtbaarheid. Meer klanten. Meer groei.
+              </p>
+              <p className="mt-4 max-w-sm text-sm leading-relaxed text-primary-foreground/60">
+                Videomarketing agency die bedrijven helpt groeien met
+                short-form content, professionele videoproductie en Meta Ads.
+              </p>
+            </div>
+
+            {/* Navigatie */}
+            <div className="md:col-span-3">
+              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
+                Navigatie
+              </h4>
+              <ul className="mt-5 space-y-3 text-sm text-primary-foreground/70">
+                {[
+                  { label: "Diensten", href: "#diensten" },
+                  { label: "Werk", href: "#werk-videos" },
+                  { label: "Werkwijze", href: "#werkwijze" },
+                  { label: "Over ons", href: "#over" },
+                  { label: "Contact", href: "#contact" },
+                ].map((l) => (
+                  <li key={l.label}>
+                    <a href={l.href} className="transition-colors hover:text-primary-foreground">
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div className="md:col-span-4">
+              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
+                Contact
+              </h4>
+              <ul className="mt-5 space-y-4 text-sm text-primary-foreground/70">
+                <li>
+                  <a
+                    href="tel:0685002058"
+                    className="flex items-center gap-3 transition-colors hover:text-primary-foreground"
+                  >
+                    <Phone className="h-4 w-4" /> 06 85 00 20 58
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://instagram.com/fourvision.nl"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-3 transition-colors hover:text-primary-foreground"
+                  >
+                    <Instagram className="h-4 w-4" /> @fourvision.nl
+                  </a>
+                </li>
+              </ul>
+              <a
+                href="#contact"
+                className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-primary-foreground px-6 py-3 text-sm font-semibold text-primary transition-all duration-300 hover:gap-3"
+              >
+                Plan een gesprek <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
-          <p className="text-xs text-primary-foreground/40">
-            © {new Date().getFullYear()} 4Vision — Jouw verhaal. Onze visie.
-          </p>
+
+          <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-primary-foreground/15 pt-8 text-xs text-primary-foreground/40 sm:flex-row">
+            <p>© {new Date().getFullYear()} 4Vision — Jouw verhaal. Onze visie.</p>
+            <p>Alle rechten voorbehouden.</p>
+          </div>
         </div>
       </footer>
     </div>
