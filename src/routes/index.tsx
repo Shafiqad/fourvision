@@ -133,12 +133,6 @@ const steps = [
   { n: "04", title: "Groei", text: "Content publiceren of inzetten voor Meta Ads." },
 ];
 
-const portfolio = [
-  { img: portfolio1, tag: "Horeca", title: "Restaurant brandfilm" },
-  { img: portfolio2, tag: "Sport", title: "Athlete personal branding" },
-  { img: portfolio3, tag: "Corporate", title: "Bedrijfsverhaal" },
-];
-
 const videoServices = [
   {
     video: metaAdsVideo.url,
