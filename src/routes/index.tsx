@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Toaster, toast } from "sonner";
 import {
   Film,
@@ -16,9 +16,15 @@ import {
   Instagram,
   ArrowRight,
   Check,
+  Volume2,
+  X,
 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
-import heroCamera from "@/assets/hero-camera.jpg";
+import founderImg from "@/assets/founder.jpeg.asset.json";
+import metaAdsVideo from "@/assets/meta-ads.mp4.asset.json";
+import eventsVideo from "@/assets/events.mp4.asset.json";
+import sketchesVideo from "@/assets/sketches.mp4.asset.json";
+import marketingVideo from "@/assets/marketing.mp4.asset.json";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
