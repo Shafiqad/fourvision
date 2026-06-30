@@ -324,7 +324,7 @@ function Index() {
               <PrimaryButton href="#contact">
                 Plan een gratis kennismaking <ArrowRight className="h-4 w-4" />
               </PrimaryButton>
-              <SecondaryButton href="#werk">Bekijk ons werk</SecondaryButton>
+              <SecondaryButton href="#werk-videos">Bekijk ons werk</SecondaryButton>
             </div>
           </div>
           <div className="reveal">
