@@ -19,13 +19,13 @@ import {
   X,
 } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
-import founderImg from "@/assets/founder.jpeg.asset.json";
-import logoBlack from "@/assets/logo-black.png.asset.json";
-import logoWhite from "@/assets/logo-white.png.asset.json";
-import metaAdsVideo from "@/assets/meta-ads.mp4.asset.json";
-import eventsVideo from "@/assets/events.mp4.asset.json";
-import sketchesVideo from "@/assets/sketches.mp4.asset.json";
-import marketingVideo from "@/assets/marketing.mp4.asset.json";
+import founderImg from "@/assets/founder.jpeg";
+import logoBlack from "@/assets/logo-black.png";
+import logoWhite from "@/assets/logo-white.png";
+import metaAdsVideo from "@/assets/meta-ads.mp4";
+import eventsVideo from "@/assets/events.mp4";
+import sketchesVideo from "@/assets/sketches.mp4";
+import marketingVideo from "@/assets/marketing.mp4";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/")({
 function Logo({ variant = "dark", className = "" }: { variant?: "dark" | "light"; className?: string }) {
   return (
     <img
-      src={variant === "light" ? logoWhite.url : logoBlack.url}
+      src={variant === "light" ? logoWhite : logoBlack}
       alt="4Vision logo"
       className={`w-auto ${className}`}
     />
@@ -135,25 +135,25 @@ const steps = [
 
 const videoServices = [
   {
-    video: metaAdsVideo.url,
+    video: metaAdsVideo,
     tag: "Meta Ads",
     title: "Meta Ads",
     text: "Bereik precies de juiste doelgroep met professionele videoadvertenties voor Facebook en Instagram. Wij combineren sterke content met slimme advertenties om meer leads, klanten en omzet te genereren.",
   },
   {
-    video: eventsVideo.url,
+    video: eventsVideo,
     tag: "Events & Personal Branding",
     title: "Events & Personal Branding",
     text: "Van aftermovies en bedrijfsevenementen tot content voor ondernemers en sporters. Professionele video's die jouw verhaal krachtig vastleggen.",
   },
   {
-    video: sketchesVideo.url,
+    video: sketchesVideo,
     tag: "Sketches & Social Content",
     title: "Sketches & Social Content",
     text: "Creatieve en entertainende video's die opvallen, gedeeld worden en zorgen voor meer bereik, betrokkenheid en zichtbaarheid op social media.",
   },
   {
-    video: marketingVideo.url,
+    video: marketingVideo,
     tag: "Marketing & Promotievideo's",
     title: "Marketing & Promotievideo's",
     text: "Professionele promotiefilms en bedrijfsvideo's waarmee je jouw merk, product of dienst overtuigend presenteert en meer klanten aantrekt.",
@@ -223,7 +223,7 @@ function FounderImage() {
       onClick={() => setOpen((v) => !v)}
     >
       <img
-        src={founderImg.url}
+        src={founderImg}
         alt="Oprichter van 4Vision"
         width={1024}
         height={1280}
