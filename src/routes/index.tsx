@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Toaster, toast } from "sonner";
 import {
   Film,
@@ -173,10 +173,7 @@ function VideoCard({ s }: { s: (typeof videoServices)[number] }) {
 
   function play() {
     const v = ref.current;
-    if (v) {
-      v.currentTime = 0;
-      void v.play();
-    }
+    if (v) void v.play();
   }
   function stop() {
     const v = ref.current;
@@ -185,6 +182,22 @@ function VideoCard({ s }: { s: (typeof videoServices)[number] }) {
       v.currentTime = 0;
     }
   }
+
+  // Autoplay zodra de kaart in beeld scrollt en pauzeer daarbuiten.
+  // Nodig voor mobiel: daar bestaat geen hover, dus zonder dit blijven de video's zwart.
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) void v.play();
+        else v.pause();
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <div className="reveal group">
@@ -198,6 +211,7 @@ function VideoCard({ s }: { s: (typeof videoServices)[number] }) {
           src={s.video}
           muted
           loop
+          autoPlay
           playsInline
           preload="metadata"
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
