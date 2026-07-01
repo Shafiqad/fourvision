@@ -307,7 +307,7 @@ function Index() {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#top" aria-label="4Vision home">
-            <Logo className="h-8" />
+            <Logo className="h-10" />
           </a>
           <div className="hidden items-center gap-8 text-sm font-medium text-muted-foreground md:flex">
             <a href="#diensten" className="transition-colors hover:text-foreground">Diensten</a>
@@ -604,6 +604,35 @@ function Index() {
                 />
               </div>
               <div className="grid gap-2">
+                <label htmlFor="telefoon" className="text-sm font-medium">Telefoonnummer</label>
+                <input
+                  id="telefoon"
+                  name="telefoon"
+                  type="tel"
+                  autoComplete="tel"
+                  className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-foreground"
+                  placeholder="06 12 34 56 78"
+                />
+              </div>
+              <div className="grid gap-2">
+                <label htmlFor="dienst" className="text-sm font-medium">Welke dienst?</label>
+                <select
+                  id="dienst"
+                  name="dienst"
+                  required
+                  defaultValue=""
+                  className="rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none transition-colors focus:border-foreground"
+                >
+                  <option value="" disabled>Kies een dienst…</option>
+                  <option value="Short-form content">Short-form content</option>
+                  <option value="Bedrijfsvideo's">Bedrijfsvideo's</option>
+                  <option value="Meta Ads">Meta Ads</option>
+                  <option value="Events & Personal Branding">Events & Personal Branding</option>
+                  <option value="Marketing & Promotievideo's">Marketing & Promotievideo's</option>
+                  <option value="Anders / weet ik nog niet">Anders / weet ik nog niet</option>
+                </select>
+              </div>
+              <div className="grid gap-2">
                 <label htmlFor="bericht" className="text-sm font-medium">Bericht</label>
                 <textarea
                   id="bericht"
@@ -628,7 +657,7 @@ function Index() {
           <div className="grid gap-12 md:grid-cols-12">
             {/* Brand */}
             <div className="md:col-span-5">
-              <Logo variant="light" className="h-10" />
+              <Logo variant="light" className="h-12" />
               <p className="mt-6 max-w-sm text-lg font-medium leading-relaxed">
                 Meer zichtbaarheid. Meer klanten. Meer groei.
               </p>
