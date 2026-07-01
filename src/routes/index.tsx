@@ -291,12 +291,29 @@ function Index() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      (e.target as HTMLFormElement).reset();
-      toast.success("Bedankt! We nemen zo snel mogelijk contact met je op.");
-    }, 600);
+    // Verstuurt naar Netlify Forms (form-name "contact"). De leads komen binnen in
+    // het Netlify-dashboard; stel daar de e-mailnotificatie in op fourvision.nl@gmail.com.
+    const body = new URLSearchParams(
+      new FormData(form) as unknown as Record<string, string>,
+    ).toString();
+    fetch("/__forms.html", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body,
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        toast.success("Bedankt! We nemen zo snel mogelijk contact met je op.");
+      })
+      .catch(() => {
+        toast.error(
+          "Er ging iets mis met versturen. Mail ons gerust direct op fourvision.nl@gmail.com.",
+        );
+      })
+      .finally(() => setSubmitting(false));
   }
 
   return (
@@ -578,9 +595,20 @@ function Index() {
           </div>
 
           <form
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="reveal rounded-3xl border border-border bg-card p-8 md:p-10"
           >
+            {/* Verborgen velden voor Netlify Forms */}
+            <input type="hidden" name="form-name" value="contact" />
+            <p className="hidden">
+              <label>
+                Niet invullen: <input name="bot-field" />
+              </label>
+            </p>
             <div className="grid gap-5">
               <div className="grid gap-2">
                 <label htmlFor="naam" className="text-sm font-medium">Naam</label>
