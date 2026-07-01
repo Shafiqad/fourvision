@@ -293,15 +293,19 @@ function Index() {
     e.preventDefault();
     const form = e.currentTarget;
     setSubmitting(true);
-    // Verstuurt naar Netlify Forms (form-name "contact"). De leads komen binnen in
-    // het Netlify-dashboard; stel daar de e-mailnotificatie in op fourvision.nl@gmail.com.
-    const body = new URLSearchParams(
-      new FormData(form) as unknown as Record<string, string>,
-    ).toString();
-    fetch("/__forms.html", {
+    // Verstuurt via FormSubmit.co rechtstreeks naar fourvision.nl@gmail.com.
+    // Let op: de allereerste inzending triggert een eenmalige activatie-mail
+    // die bevestigd moet worden in de inbox van fourvision.nl@gmail.com.
+    const data = Object.fromEntries(new FormData(form).entries());
+    fetch("https://formsubmit.co/ajax/fourvision.nl@gmail.com", {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body,
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        ...data,
+        _subject: "Nieuwe aanvraag via 4Vision website",
+        _template: "table",
+        _captcha: "false",
+      }),
     })
       .then((res) => {
         if (!res.ok) throw new Error(String(res.status));
@@ -595,20 +599,18 @@ function Index() {
           </div>
 
           <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="reveal rounded-3xl border border-border bg-card p-8 md:p-10"
           >
-            {/* Verborgen velden voor Netlify Forms */}
-            <input type="hidden" name="form-name" value="contact" />
-            <p className="hidden">
-              <label>
-                Niet invullen: <input name="bot-field" />
-              </label>
-            </p>
+            {/* Honeypot tegen spam (FormSubmit negeert inzendingen waar dit is ingevuld) */}
+            <input
+              type="text"
+              name="_honey"
+              tabIndex={-1}
+              autoComplete="off"
+              className="hidden"
+              aria-hidden="true"
+            />
             <div className="grid gap-5">
               <div className="grid gap-2">
                 <label htmlFor="naam" className="text-sm font-medium">Naam</label>
