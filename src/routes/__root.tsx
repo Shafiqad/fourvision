@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "fourvision" },
+      { name: "description", content: "4Vision Agency Builder creates premium, minimalist websites for video marketing agencies." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "fourvision" },
+      { property: "og:description", content: "4Vision Agency Builder creates premium, minimalist websites for video marketing agencies." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "fourvision" },
+      { name: "twitter:description", content: "4Vision Agency Builder creates premium, minimalist websites for video marketing agencies." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f458520c-2a28-48e8-bf75-27a7868a6c9b/id-preview-26d48c9e--2dedbc5d-aeed-467a-8d50-ffdc558c1266.lovable.app-1782862959477.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f458520c-2a28-48e8-bf75-27a7868a6c9b/id-preview-26d48c9e--2dedbc5d-aeed-467a-8d50-ffdc558c1266.lovable.app-1782862959477.png" },
     ],
     links: [
       {
